@@ -16,15 +16,15 @@ app = Flask(__name__)
 def reply():
     text = request.form.get("Body")
     number = request.form.get("From")
-    number = number.replace("whatsapp:", "")[:]
+    number = number.replace("whatsapp:", "")
     response = MessagingResponse()
     response.message("Welcome {0}".format(number))
     
-    try:        
-        user = users.find_one({'number': number})
-    except:
-        response.message(" Error Occured While Fetching User")
-        return str(response)
+    #try:        
+    #   user = users.find_one({'number': number})
+    #except:
+    #    response.message(" Error Occured While Fetching User")
+    #    return str(response)
         
     return str(response)
     
