@@ -21,7 +21,7 @@ def reply():
     #if bool(user) == False:        
     response.message("Hi, Thanks for reaching Local Directory Service.\n Choose from the options below:"
                 "\n\n*Type*\n\n 1️⃣ - Water Softener \n 2️⃣ - Bike Puncture Service \n 3️⃣ - House Keeping Service")
-    users.insert_one({"number": number, "status":"main", "messages":[]})
+    #users.insert_one({"number": number, "status":"main", "messages":[]})
     #else:
     #    response.message("No User Found with number")
         
