@@ -20,12 +20,13 @@ def reply():
     response = MessagingResponse()
     response.message("Welcome")
     
-    try:        
-        user = users.find_one({'number': number})
-    except:
-        response.message(" Error Occured While Fetching User")
-        return str(response)
+    #try:        
+    #    user = users.find_one({'number': number})
+    #except:
+    #    response.message(" Error Occured While Fetching User")
+    #    return str(response)
         
     return str(response)
+    
 if __name__ == "__main__":
     app.run()
