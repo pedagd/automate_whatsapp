@@ -18,7 +18,10 @@ def reply():
     number = request.form.get("From")
     number = number.replace("whatsapp:", "")
     response = MessagingResponse()
-    response.message("Welcome {0}".format(number))
+    
+    response.message("Hi {0}, Thanks for reaching Local Directory Service.\n Choose from the options below:"
+                    "\n\n*Type*\n\n 1️⃣ - Water Softener \n 2️⃣ - Bike Puncture Service \n 3️⃣ - House Keeping Service".format(number))
+
     try:
        option = int(text)
     except:
