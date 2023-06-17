@@ -19,21 +19,11 @@ def reply():
     response = MessagingResponse()
     try:        
         user = users.find_one({"number": number})
-    except Exception as e:
-        if hasttr(e,'message'):
-            response.message(e.message)
-        else:
-            response.message(" Error Occured While Fetching User")
+    except:
+        response.message(" Error Occured While Fetching User")
         return str(response)
         
-    if bool(user) == False:        
-        response.message("Hi, Thanks for reaching Local Directory Service.\n Choose from the options below:"
-                    "\n\n*Type*\n\n 1️⃣ - Water Softener \n 2️⃣ - Bike Puncture Service \n 3️⃣ - House Keeping Service")
-        users.insert_one({"number": number, "status":"main", "messages":[]})
-    else:
-        response.message("Hi {0}, Thanks for reaching Local Directory Service.\n Choose from the options below:"
-                    "\n\n*Type*\n\n 1️⃣ - Water Softener \n 2️⃣ - Bike Puncture Service \n 3️⃣ - House Keeping Service".format(user["name"]))
-
+    
     return str(response)
     
     
