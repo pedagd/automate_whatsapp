@@ -7,6 +7,8 @@ from datetime import datetime
 cluster = MongoClient("mongodb+srv://pdurgasankar:2CeGlXcfFysF8U0W@cluster0.t0usdtu.mongodb.net/")
 db = cluster["Directory_Services"]
 contacts = db["contacts"]
+users = db["users"]
+
 app = Flask(__name__)
 
 @app.route("/", methods=["get","post"])
@@ -16,9 +18,21 @@ def reply():
     number = number.replace("whatsapp:","")[:-2]
     
     response = MessagingResponse()
-                      
-    response.message("Hi, Thanks for reaching Local Directory Service.\n Choose from the options below:"
+    user = users.find_one({"number": number})
+    if bool(user) == False:        
+        response.message("Hi, Thanks for reaching Local Directory Service.\n Choose from the options below:"
                     "\n\n*Type*\n\n 1️⃣ - Water Softener \n 2️⃣ - Bike Puncture Service \n 3️⃣ - House Keeping Service")
+        users.insert_one({"number": number, "status":"main", "messages":[]})
+    elif user["status"] == "main":
+        try:
+            option = int(text)
+        except:
+            response.message("Please enter a valid response")
+            return str(response)
+    if option == 1:
+        contact = contacts.find_one({"name": "Water Softener"})
+        if bool(contact) == True:
+            response.message('Name:%s\nNumber:%s\nRemarks%sRating%s' % (contact["name"], contact["number"],contact["remarks"],contact["ratings"])
         
     return str(response)
 
