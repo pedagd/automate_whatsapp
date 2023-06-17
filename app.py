@@ -19,8 +19,8 @@ def reply():
     response = MessagingResponse()
     #user = users.find_one({"number": number})
     #if bool(user) == False:        
-    response.message("Hi, Thanks for reaching Local Directory Service.\n Choose from the options below:"
-                "\n\n*Type*\n\n 1️⃣ - Water Softener \n 2️⃣ - Bike Puncture Service \n 3️⃣ - House Keeping Service")
+    response.message("Hi {0}, Thanks for reaching Local Directory Service.\n Choose from the options below:"
+                "\n\n*Type*\n\n 1️⃣ - Water Softener \n 2️⃣ - Bike Puncture Service \n 3️⃣ - House Keeping Service".format(number))
     #users.insert_one({"number": number, "status":"main", "messages":[]})
     #else:
     #    response.message("No User Found with number")
