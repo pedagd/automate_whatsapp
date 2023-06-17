@@ -27,9 +27,8 @@ def reply():
         if option == 1:
             contact = contacts.find_one({"name": "Water Softener"})
             if bool(contact) == True:
-                response.message('Name:%s\nNumber:%s\nRemarks%sRating%s' % (contact["name"], contact["number"],contact["remarks"],contact["ratings"])
-        
-    return str(response)
+                response.message('Name:%s\nNumber:%s\nRemarks%sRating%s' % (contact["name"], contact["number"],contact["remarks"],contact["ratings"])        
+                return str(response)
 
 if __name__ == "__main__":
     app.run()
