@@ -16,7 +16,7 @@ app = Flask(__name__)
 def reply():
     text = request.form.get("Body")
     number = request.form.get("From")
-   
+    number = number.replace("whatsapp:", "")[:-2]
     response = MessagingResponse()
     response.message("Welcome {0}".format(number))
     
