@@ -17,7 +17,9 @@ def reply():
     
     response = MessagingResponse()
                       
-    response.message("Hello Durga");
+    response.message("Hi, Thanks for reaching Local Directory Service.\n Choose from the options below:"
+                    "\n\n*Type*\n\n 1️⃣ - Water Softener \n 2️⃣ - Bike Puncture Service \n 3️⃣ - House Keeping Service")
+        
     return str(response)
 
 if __name__ == "__main__":
