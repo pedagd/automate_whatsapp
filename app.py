@@ -17,7 +17,15 @@ def reply():
     number = request.form.get("From")
    
     response = MessagingResponse()
-    user = users.find_one({"number": number})
+    try:        
+        user = users.find_one({"number": number})
+    except Exception as e:
+        if hasttr(e,'message'):
+            response.message(e.message)
+        else:
+            response.message(" Error Occured While Fetching User")
+        return str(response)
+        
     if bool(user) == False:        
         response.message("Hi, Thanks for reaching Local Directory Service.\n Choose from the options below:"
                     "\n\n*Type*\n\n 1️⃣ - Water Softener \n 2️⃣ - Bike Puncture Service \n 3️⃣ - House Keeping Service")
