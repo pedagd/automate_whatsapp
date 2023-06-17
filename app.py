@@ -18,19 +18,16 @@ def reply():
     number = request.form.get("From")
     number = number.replace("whatsapp:", "")
     response = MessagingResponse()
-    
-    response.message("Hi {0}, Thanks for reaching Local Directory Service.\n Choose from the options below:"
-                    "\n\n*Type*\n\n 1️⃣ - Water Softener \n 2️⃣ - Bike Puncture Service \n 3️⃣ - House Keeping Service".format(number))
-    # return str(response)
-    
+
     try:
        option = int(text)
     except:
-       response.message("Please enter a valid response")
+       response.message("Hi {0}, Thanks for reaching Local Directory Service.\n Choose from the options below:"
+                    "\n\n*Type*\n\n 1️⃣ - Water Softener \n 2️⃣ - Bike Puncture Service \n 3️⃣ - House Keeping Service".format(number))
        return str(response)            
     if option == 1:
         response.message("You Selected 1")
-        return str(response)
+        #return str(response)
         #contact = contacts.find_one({"name": "Water Softener"})
         #if bool(contact) == True:
         #    response.message("Name:{0}\nNumber:{1}\nRemarks:{2}\nRating:{3}".format(
@@ -39,7 +36,7 @@ def reply():
         #    response.message("Unable to find contact")
     else:
         response.message("Hi {0}, Thanks for reaching Local Directory Service.\n Choose from the options below:"
-                    "\n\n*Type*\n\n 1️⃣ - Water Softener \n 2️⃣ - Bike Puncture Service \n 3️⃣ - House Keeping Service".format(user["name"]))
+                    "\n\n*Type*\n\n 1️⃣ - Water Softener \n 2️⃣ - Bike Puncture Service \n 3️⃣ - House Keeping Service")
             
     return str(response)
     
