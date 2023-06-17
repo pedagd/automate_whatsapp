@@ -18,7 +18,7 @@ def reply():
     number = request.form.get("From")
    
     response = MessagingResponse()
-    response.message("Welcome")
+    response.message("Welcome {0}".format(number))
     
     #try:        
     #    user = users.find_one({'number': number})
