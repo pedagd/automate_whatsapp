@@ -22,6 +22,7 @@ def reply():
     
     try:        
        user = users.find_one({"number": number})
+        response.message("Welcome {0}".format(user["name"]))
     except:
         response.message(" Error Occured While Fetching User")
         return str(response)
