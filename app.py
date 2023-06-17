@@ -23,16 +23,11 @@ def reply():
         response.message("Hi, Thanks for reaching Local Directory Service.\n Choose from the options below:"
                     "\n\n*Type*\n\n 1️⃣ - Water Softener \n 2️⃣ - Bike Puncture Service \n 3️⃣ - House Keeping Service")
         users.insert_one({"number": number, "status":"main", "messages":[]})
-    elif user["status"] == "main":
-        try:
-            option = int(text)
-        except:
-            response.message("Please enter a valid response")
-            return str(response)
-    if option == 1:
-        contact = contacts.find_one({"name": "Water Softener"})
-        if bool(contact) == True:
-            response.message('Name:%s\nNumber:%s\nRemarks%sRating%s' % (contact["name"], contact["number"],contact["remarks"],contact["ratings"])
+    elif user["status"] == "main":        
+        if option == 1:
+            contact = contacts.find_one({"name": "Water Softener"})
+            if bool(contact) == True:
+                response.message('Name:%s\nNumber:%s\nRemarks%sRating%s' % (contact["name"], contact["number"],contact["remarks"],contact["ratings"])
         
     return str(response)
 
