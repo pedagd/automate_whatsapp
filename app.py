@@ -5,7 +5,7 @@ from pymongo import MongoClient
 from datetime import datetime
 
 #cluster = MongoClient("mongodb+srv://pdurgasankar:2CeGlXcfFysF8U0W@cluster0.t0usdtu.mongodb.net/")
-cluster = MongoClient("mongodb+srv://pdurgasankar:2CeGlXcfFysF8U0W@cluster0.t0usdtu.mongodb.net/?retryWrites=true&w=majority")
+cluster = MongoClient("mongodb+srv://pdurgasankar:2CeGlXcfFysF8U0W@cluster0.t0usdtu.mongodb.net/Directory_Services?retryWrites=true&w=majority")
 db = cluster["Directory_Services"]
 contacts = db["contacts"]
 users = db["users"]
