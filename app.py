@@ -4,8 +4,6 @@ from twilio.twiml.messaging_response import MessagingResponse
 from pymongo import MongoClient
 from datetime import datetime
 
-#cluster = MongoClient("mongodb+srv://pdurgasankar:2CeGlXcfFysF8U0W@cluster0.t0usdtu.mongodb.net/")
-# mongodb+srv://pdurgasankar:<password>@cluster0.t0usdtu.mongodb.net/
 cluster = MongoClient("mongodb+srv://pdurgasankar:2CeGlXcfFysF8U0W@cluster0.t0usdtu.mongodb.net/Directory_Services?retryWrites=true&w=majority")
 db = cluster["Directory_Services"]
 contacts = db["Contacts"]
@@ -19,16 +17,21 @@ def reply():
     number = request.form.get("From")
     number = number.replace("whatsapp:", "")
     response = MessagingResponse()
-
+    for x in contacts.find():
+        msg = "*{0}* - {1}\n".format(x["option_number"],x["name"])    
+    response.message("Hi {0}, Thanks for reaching Local Directory Service. \n Choose from the options below:"
+                           "\n\n*Type*\n\n {1}".format(number,msg))
+        
     try:
        option = int(text)
     except:
-       response.message("Hi {0}, Thanks for reaching Local Directory Service.\n Choose from the options below:"
-                    "\n\n*Type*\n\n 1️⃣ - Water Softener \n 2️⃣ - Bike Puncture Service \n 3️⃣ - House Keeping Service".format(number))
-       return str(response)            
-    if option == 1:
+       response.message("Hi {0}, Thanks for reaching Local Directory Service. \n Choose from the options below:"
+                           "\n\n*Type*\n\n {1}".format(number,msg))
+       return str(response)
+    
+    if bool(option) == True:
         try:            
-            contact = contacts.find_one({"name": "Water Softener"})
+            contact = contacts.find_one({"option_number": option})
             if bool(contact) == True:
                 response.message("Name:{0}\nNumber:{1}\nRemarks:{2}\nRating:{3}".format(
                 contact["name"], contact["number"], contact["remarks"], contact["ratings"]))
@@ -40,9 +43,9 @@ def reply():
             response.message("Unable to find contact")
             return str(response)
     else:
-        response.message("Hi, Thanks for reaching Local Directory Service.\n Choose from the options below:"
-                    "\n\n*Type*\n\n 1️⃣ - Water Softener \n 2️⃣ - Bike Puncture Service \n 3️⃣ - House Keeping Service")
-            
+        response.message("Hi {0}, Thanks for reaching Local Directory Service. \n Choose from the options below:"
+                           "\n\n*Type*\n\n {1}".format(number,msg))
+    
     return str(response)
     
 if __name__ == "__main__":
