@@ -16,9 +16,14 @@ def reply():
     text = request.form.get("Body")
     number = request.form.get("From")
     number = number.replace("whatsapp:", "")
+
+    msg = "Welcome Message"
+    
     response = MessagingResponse()
+    
     for x in contacts.find():
         msg = "*{0}* - {1}\n".format(x["option_number"],x["name"])    
+    
     response.message("Hi {0}, Thanks for reaching Local Directory Service. \n Choose from the options below:"
                            "\n\n*Type*\n\n {1}".format(number,msg))
         
