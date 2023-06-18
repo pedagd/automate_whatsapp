@@ -38,7 +38,7 @@ def reply():
     
     if bool(option) == True:
         try:            
-            contact = contacts.find_one({"option_number": option})
+            contact = contacts.find_one({"slno": option})
             if bool(contact) == True:
                 response.message("Name:{0}\nNumber:{1}\nRemarks:{2}\nRating:{3}".format(
                 contact["name"], contact["number"], contact["remarks"], contact["ratings"]))
