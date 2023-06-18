@@ -26,24 +26,22 @@ def reply():
     msg = msg+options_msg
     except_msg = "Please enter a valid option \n Choose from the below options\n{0}".format(options_msg)
     
-    response.message(msg)
+    #response.message(msg)
     
     try:
        option = int(text)
     except:
-       response.message(except_msg)
+       response.message(msg)
        return str(response)
     
     if bool(option) == True:
         try:            
             contact = contacts.find_one({"slno": option})
             if bool(contact) == True:                
-                response.message("Name:{0}\nNumber:{1}\nRemarks:{2}\nRating:{3}".format(
+                response.message("Name : {0}\nNumber : {1}\nRemarks : {2}\nRating : {3}".format(
                 contact["name"], contact["number"], contact["remarks"], contact["ratings"]))
-                #return str(response)
             else:
                 response.message("Oops... Something went wrong..!")
-                #return str(response)
         except:
             response.message(except_msg)
             return str(response)
