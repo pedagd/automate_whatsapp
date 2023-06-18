@@ -40,10 +40,10 @@ def reply():
             if bool(contact) == True:                
                 response.message("Name:{0}\nNumber:{1}\nRemarks:{2}\nRating:{3}".format(
                 contact["name"], contact["number"], contact["remarks"], contact["ratings"]))
-                return str(response)
+                #return str(response)
             else:
                 response.message("Oops... Something went wrong..!")
-                return str(response)
+                #return str(response)
         except:
             response.message(except_msg)
             return str(response)
