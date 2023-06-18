@@ -17,16 +17,18 @@ def reply():
     number = request.form.get("From")
     number = number.replace("whatsapp:", "")
 
-    msg = "Welcome Message"
+    msg = "Hi {0}, Thanks for reaching Local Directory Service. \n Choose from the options below:\n\n*Type*\n\n"
+    
     
     response = MessagingResponse()
     
     for x in contacts.find():
-        msg += "*{0}* - {1}\n".format(x["slno"],x["name"])    
+        msg += "*{0}* - {1}\n".format(x["slno"],x["type"])    
     
-    response.message("Hi {0}, Thanks for reaching Local Directory Service. \n Choose from the options below:"
-                           "\n\n*Type*\n\n {1}".format(number,msg))
-        
+    #response.message("Hi {0}, Thanks for reaching Local Directory Service. \n Choose from the options below:"
+    #                       "\n\n*Type*\n\n {1}".format(number,msg))
+    response.message(msg)
+    
     try:
        option = int(text)
     except:
